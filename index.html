@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres ser mi San Valentín?</title>
+
+<style>
+body{
+    margin:0;
+    background:#ff4d6d;
+    font-family: 'Segoe UI', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.card{
+    background:#fff0f3;
+    width:90%;
+    max-width:600px;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+    color:#c9184a;
+}
+
+.tree{
+    position:relative;
+    width:200px;
+    height:200px;
+    margin:20px auto;
+}
+
+.trunk{
+    width:30px;
+    height:80px;
+    background:#8b5e3c;
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:10px;
+}
+
+.heart{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    transform:rotate(45deg);
+    animation: float 4s infinite ease-in-out;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    width:20px;
+    height:20px;
+    background:red;
+    border-radius:50%;
+    position:absolute;
+}
+
+.heart::before{ top:-10px; left:0; }
+.heart::after{ left:-10px; top:0; }
+
+@keyframes float{
+    0%{ transform:translateY(0) rotate(45deg);}
+    50%{ transform:translateY(-10px) rotate(45deg);}
+    100%{ transform:translateY(0) rotate(45deg);}
+}
+
+.counter{
+    margin-top:15px;
+    font-weight:bold;
+    color:#590d22;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Para el amor de mi vida ❤️</h1>
+
+    <p>
+        Si pudiera elegir un lugar para quedarme,  
+        sería siempre a tu lado.
+    </p>
+
+    <div class="tree">
+        <div class="trunk"></div>
+        <!-- corazones -->
+        <div class="heart" style="top:20px; left:60px;"></div>
+        <div class="heart" style="top:40px; left:100px;"></div>
+        <div class="heart" style="top:60px; left:40px;"></div>
+        <div class="heart" style="top:70px; left:120px;"></div>
+        <div class="heart" style="top:30px; left:140px;"></div>
+        <div class="heart" style="top:90px; left:80px;"></div>
+    </div>
+
+    <div class="counter" id="contador"></div>
+</div>
+
+<script>
+// CAMBIÁ ESTA FECHA POR CUANDO EMPEZÓ SU HISTORIA
+const fechaInicio = new Date("2025-11-17T11:45:00");
+
+function actualizarContador(){
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+
+    const dias = Math.floor(diferencia / (1000*60*60*24));
+    const horas = Math.floor((diferencia / (1000*60*60)) % 24);
+    const minutos = Math.floor((diferencia / (1000*60)) % 60);
+    const segundos = Math.floor((diferencia / 1000) % 60);
+
+    document.getElementById("contador").innerHTML =
+        `Mi amor por ti comenzó hace <br>
+        ${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos 💕`;
+}
+
+setInterval(actualizarContador, 1000);
+</script>
+
+</body>
+</html>
